@@ -37,9 +37,22 @@ function showLibrary () {
 
 const addBookBtn = document.querySelector("#add-book-button");
 const bookDetails = document.querySelector("#book-details");
+const explainer = document.querySelector("#explainer");
+const addBookContainer = document.querySelector("#add-book-container");
+const cancelBookSumit = document.querySelector("#cancel-submit-book");
 
 addBookBtn.addEventListener("click", showBookDetails);
 
 function showBookDetails () {
   bookDetails.style.display = "flex";
+  explainer.style.display = "none";
+  addBookContainer.style.height = "100vh";
+}
+
+cancelBookSumit.addEventListener("click", hideBookDetails);
+
+function hideBookDetails () {
+  bookDetails.style.display = "none";
+  explainer.style.display = "block";
+  addBookContainer.style.height = "50vh";
 }
