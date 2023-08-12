@@ -15,8 +15,19 @@ const theHobbit = new Book("The Hobbit", "J. R. R. Tolkien", "310", "read");
 const theGodfather = new Book("The Godfather", "Mario Puzo", "496", "not read yet");
 
 const body = document.querySelector("body");
+const container = document.querySelector("#container")
 const bookContainer = document.createElement("div");
-const bookList = document.querySelector("#book-list");
+const libraryBtn = document.querySelector("#library-button");
+const addBookBtn = document.querySelector("#add-book-button");
+const aboutBtn = document.querySelector("#about-button");
+const library = document.querySelector("#library");
+const addBookContainer = document.querySelector("#add-book-container");
+const about = document.querySelector("#about");
+const submitBookBtn = document.querySelector("#submit-book-button");
+const cancelBookSumit = document.querySelector("#cancel-submit-book");
+const titleInput = document.querySelector("title");
+const authorInput = document.querySelector("author");
+const pageCountInput = document.querySelector("page-count");
 
 function addBookToLibrary () {
   myLibrary.push(theShining);
@@ -35,24 +46,36 @@ function showLibrary () {
 }
 // showLibrary();
 
-const addBookBtn = document.querySelector("#add-book-button");
-const bookDetails = document.querySelector("#book-details");
-const explainer = document.querySelector("#explainer");
-const addBookContainer = document.querySelector("#add-book-container");
-const cancelBookSumit = document.querySelector("#cancel-submit-book");
+libraryBtn.addEventListener("click", showLibraryContainer);
+
+function showLibraryContainer () {
+  library.style.display = "flex";
+  addBookContainer.style.display = "none";
+  about.style.display = "none";
+}
 
 addBookBtn.addEventListener("click", showBookDetails);
 
 function showBookDetails () {
-  bookDetails.style.display = "flex";
-  explainer.style.display = "none";
-  addBookContainer.style.height = "100vh";
+  library.style.display = "none";
+  addBookContainer.style.display = "flex";
+  about.style.display = "none";
 }
 
 cancelBookSumit.addEventListener("click", hideBookDetails);
 
 function hideBookDetails () {
-  bookDetails.style.display = "none";
-  explainer.style.display = "block";
-  addBookContainer.style.height = "50vh";
+  addBookContainer.style.display = "none";
+  library.style.display = "flex";
+  titleInput.value = "";
+  authorInput.value = "";
+  pageCountInput.value = "";
+}
+
+aboutBtn.addEventListener("click", showAboutContainer);
+
+function showAboutContainer () {
+  library.style.display = "none";
+  addBookContainer.style.display = "none";
+  about.style.display = "flex";
 }

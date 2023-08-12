@@ -12,13 +12,17 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 </head>
 <body>
+  <div id="container">
+    <div id="button-container">
+      <button id="library-button">LIBRARY <span class="material-symbols-outlined">book</span></button>
+      <button id="add-book-button">ADD BOOK <span class="material-symbols-outlined">library_add</span></button>
+      <button id="about-button">ABOUT <span class="material-symbols-outlined">help_center</span></button>
+    </div>
+    <div id="library">
+      <h1>LIBRARY</h1>
+    </div>
     <div id="add-book-container">
-      <button id="add-book-button">ADD BOOK <span class="material-symbols-outlined">add_notes</span></button>
-      <div id="explainer">
-        <p>Books in the library are listed in the panel on the right (on desktop), and below (on mobile).</p>
-        <p>To add a new book to the library, click the ADD BOOK<span class="material-symbols-outlined">add_notes</span> button above.</p>
-      </div>
-      <div id="book-details">
+      <form action="">
         <label for="title">Book Title:</label>
         <input type="text" id="title">
         <label for="author">Author Name:</label>
@@ -32,12 +36,23 @@
           <input type="radio" name="read-status" id="status-unread">
           <label for="status-unread">Not Read Yet</label>
         </fieldset>
-        <button id="submit-book-button">SUBMIT</button>
+        <input id="submit-book-button" type="button" value="SUBMIT">
         <button id="cancel-submit-book">Cancel</button>
-      </div>  
+      </form>
     </div>
-    <div id="book-list">
-      <h1>LIBRARY</h1>
+    <div id="about">
+      <div id="explainer">
+        <p>Books in the library are listed in the Library section. Click the LIBRARY<span class="material-symbols-outlined">book</span> button above to view books.</p>
+        <p>To add a new book to the library, click the ADD BOOK<span class="material-symbols-outlined">library_add</span> button above.</p>
+      </div>
+      <div id="about-library">
+        <p>This project is based on the Library project in the Javascript course on <a href="https://www.theodinproject.com/lessons/node-path-javascript-library" target="_blank">The Odin Project<span class="material-symbols-outlined">open_in_new</span></a>.</p>
+        <p>Check out my github account for more projects:</p>
+        <div id="account-link">
+          <img id="github-logo" src="images/github-logo.png"><a href="https://github.com/ChaseDev7" target="_blank">CHASEDEV7<span class="material-symbols-outlined">open_in_new</span></a>
+        </div>
+      </div>
     </div>
+  </div>
 </body>
 </html>
