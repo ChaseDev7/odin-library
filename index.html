@@ -20,25 +20,25 @@
     </div>
     <div id="library">
       <h1>LIBRARY</h1>
+      <div class="book">
+
+      </div>
     </div>
     <div id="add-book-container">
-      <form action="">
+      <form id="book-form" action="">
         <label for="title">Book Title:</label>
         <input type="text" id="title">
         <label for="author">Author Name:</label>
         <input type="text" id="author">
         <label for="page-count">Number of Pages:</label>
-        <input type="text" id="page-count">
-        <fieldset>
-          <legend>Read status:</legend>
-          <input type="radio" name="read-status" id="status-read">
-          <label for="status-read">Read</label>
-          <input type="radio" name="read-status" id="status-unread">
-          <label for="status-unread">Not Read Yet</label>
-        </fieldset>
-        <input id="submit-book-button" type="button" value="SUBMIT">
-        <button id="cancel-submit-book">Cancel</button>
+        <input type="number" id="page-count">
+        <div id="read-box">
+          <label for="read-status">Have you read this book?</label>
+          <input type="checkbox" id="read-status">
+        </div>
       </form>
+      <button id="submit-book-button">SUBMIT</button>
+      <button id="cancel-submit-book">Cancel</button>
     </div>
     <div id="about">
       <div id="explainer">
