@@ -5,10 +5,6 @@ function Book(title, author, pages, readStatus) {
   this.author = author
   this.pages = pages
   this.readStatus = readStatus
-  // Fix the function, check Odin site for details.
-  this.info = function () {
-    return title + author + pages + readStatus;
-  }
 }
 
 const theShining = new Book("The Shining", "Stephen King", "447", "not read yet");
@@ -16,46 +12,52 @@ const theHobbit = new Book("The Hobbit", "J. R. R. Tolkien", "310", "read");
 const theGodfather = new Book("The Godfather", "Mario Puzo", "496", "not read yet");
 
 const body = document.querySelector("body");
-const container = document.querySelector("#container")
-const bookContainer = document.createElement("div");
-const libraryBtn = document.querySelector("#library-button");
-const addBookBtn = document.querySelector("#add-book-button");
-const aboutBtn = document.querySelector("#about-button");
-const library = document.querySelector("#library");
-const addBookContainer = document.querySelector("#add-book-container");
+const newBookBtn = document.querySelector("#new-book-button");
+const bookInputDetails = document.querySelector("#book-details");
 const about = document.querySelector("#about");
 const submitBookBtn = document.querySelector("#submit-book-button");
 const cancelBookSumit = document.querySelector("#cancel-submit-book");
+const noBooksMessage = document.querySelector("#no-book-message");
+const libraryContainer = document.querySelector("#library-container");
 
-function showLibrary () {
+function showLibrary (newBook) {
+  libraryContainer.innerHTML = "";
   for (i = 0; i < myLibrary.length; i++) {
     let book = document.createElement("div");
     book.classList.add("book");
     book.style.display = "flex";
-    book.textContent = myLibrary[i].info;
-    library.appendChild(book);
+
+    const bookTitle = document.createElement("div");
+    bookTitle.classList.add("book-title");
+    //  Fix code. Need to add data attribute for each book element.
+    bookTitle.innerHTML = "'" + myLibrary[i.title] + "'";
+    book.appendChild(bookTitle);
+    const bookAuthor = document.createElement("div");
+    bookAuthor.innerHTML = newBook.author;
+    book.appendChild(bookAuthor);
+    const bookPages = document.createElement("div");
+    bookPages.innerHTML = newBook.pages;
+    book.appendChild(bookPages);
+    const bookReadStatus = document.createElement("div");
+    bookReadStatus.innerHTML = newBook.readStatus;
+    book.appendChild(bookReadStatus);
+
+    libraryContainer.appendChild(book);
   }
 }
 
-libraryBtn.addEventListener("click", showLibraryContainer);
-
-function showLibraryContainer () {
-  library.style.display = "flex";
-  addBookContainer.style.display = "none";
-  about.style.display = "none";
-}
-
-addBookBtn.addEventListener("click", showBookDetails);
+newBookBtn.addEventListener("click", showBookDetails);
 
 function showBookDetails () {
-  library.style.display = "none";
-  addBookContainer.style.display = "flex";
+  bookInputDetails.style.display = "flex";
   about.style.display = "none";
 }
 
 submitBookBtn.addEventListener("click", addBookToLibrary);
 
 function addBookToLibrary () {
+  noBooksMessage.style.display = "none";
+
   const title = document.querySelector("#title").value;
   const author = document.querySelector("#author").value;
   const pages = document.querySelector("#page-count").value;
@@ -63,35 +65,17 @@ function addBookToLibrary () {
 
   let newBook = new Book(title, author, pages, readStatus);
 
-  const bookTitle = document.createElement("div");
-  bookTitle.setAttribute("id", "book-title");
-  bookTitle.innerHTML = "'" + newBook.title + "'";
-  const bookAuthor = document.createElement("div");
-  bookAuthor.innerHTML = newBook.author;
-  const bookPages = document.createElement("div");
-  bookPages.innerHTML = newBook.pages;
-  const bookReadStatus = document.createElement("div");
-  bookReadStatus.innerHTML = newBook.readStatus;
-
   myLibrary.push(newBook);
 
-  library.style.display = "flex";
-  addBookContainer.style.display = "none";
+  bookInputDetails.style.display = "none";
+  about.style.display = "flex";
 
-  showLibrary();
+  showLibrary(newBook);
 }
 
 cancelBookSumit.addEventListener("click", hideBookDetails);
 
 function hideBookDetails () {
-  addBookContainer.style.display = "none";
-  library.style.display = "flex";
-}
-
-aboutBtn.addEventListener("click", showAboutContainer);
-
-function showAboutContainer () {
-  library.style.display = "none";
-  addBookContainer.style.display = "none";
+  bookInputDetails.style.display = "none";
   about.style.display = "flex";
 }

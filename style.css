@@ -2,15 +2,13 @@ body {
   margin: 0;
   font-family: 'Roboto', sans-serif;
   display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
-#container {
+#new-book-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 70%;
+  width: 50%;
 }
 
 #button-container {
@@ -19,53 +17,56 @@ body {
 }
 
 #library {
-  margin-top: 35px;
-  width: 70%;
-  height: 90vh;
+  margin: 10px;
+  width: 50%;
+  height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   border-radius: 9px;
-  padding: 0 20px;
+  padding: 0 20px 15px 20px;
+  border: 2px solid rgb(227, 124, 20);
 }
 
 a:link, a:visited, a:active, a:hover {
   color: rgb(227, 124, 20);
 }
 
-#library-button, #add-book-button, #about-button {
+#new-book-button {
   border: 2px solid rgb(227, 124, 20);
-  background-color: rgb(227, 124, 20);
+  background-color: white;
+  border-radius: 9px;
+  margin-top: 20px;
+  width: 50%;
   padding: 10px;
   font-weight: bolder;
   font-size: 20px;
-  color: white;
+  color: rgb(227, 124, 20);
   display: flex;
   align-items: center;
   justify-content: center;
-  flex: 1;
   transition: 0.7s;
 }
 
-#library-button:hover, #add-book-button:hover, #about-button:hover {
+#new-book-button:hover {
   background-color: white;
   cursor: pointer;
   color: rgb(227, 124, 20);
 }
 
 #about {
-  margin-top: 30px;
+  margin-bottom: 15px;
   color: rgb(227, 124, 20);
   font-size: 20px;
   width: 50%;
   font-weight: 900;
-  display: none;
+  display: flex;
   flex-direction: column;
 }
 
-#add-book-container {
+#book-details {
   margin-top: 35px;
-  width: 30%;
+  width: 50%;
   display: none;
   flex-direction: column;
   border: 2px solid rgb(227, 124, 20);
@@ -160,7 +161,7 @@ input {
   display: flex;
 }
 
-#book-title {
+.book-title {
   font-weight: bolder;
   font-size: 25px;
 }
