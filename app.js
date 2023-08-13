@@ -7,10 +7,6 @@ function Book(title, author, pages, readStatus) {
   this.readStatus = readStatus
 }
 
-const theShining = new Book("The Shining", "Stephen King", "447", "not read yet");
-const theHobbit = new Book("The Hobbit", "J. R. R. Tolkien", "310", "read");
-const theGodfather = new Book("The Godfather", "Mario Puzo", "496", "not read yet");
-
 const body = document.querySelector("body");
 const newBookBtn = document.querySelector("#new-book-button");
 const bookInputDetails = document.querySelector("#book-details");
@@ -21,31 +17,58 @@ const noBooksMessage = document.querySelector("#no-book-message");
 const libraryContainer = document.querySelector("#library-container");
 
 function showLibrary (newBook) {
+  // Clears library div in order to prevent duplication.
   libraryContainer.innerHTML = "";
+  // Loops through myLibrary array to display each book.
   for (i = 0; i < myLibrary.length; i++) {
+    // Creates book element and sub-elements to display.
     let book = document.createElement("div");
     book.classList.add("book");
     book.style.display = "flex";
 
+
+    
+    // Want to link book element to array index. How?
+    book.setAttribute("data-book-id", );
+
+
+
+
+    let bookInfo = document.createElement("div");
+    bookInfo.classList.add("book-info");
+    bookInfo.style.display = "flex";
+    book.appendChild(bookInfo);
+    let bookButtons = document.createElement("div");
+    bookButtons.classList.add("book-buttons");
+    bookButtons.style.display = "flex";
+    book.appendChild(bookButtons);
+
+    // Adds content from library index (object) into book element.
     const bookTitle = document.createElement("div");
     bookTitle.classList.add("book-title");
-    //  Fix code. Need to add data attribute for each book element.
-    bookTitle.innerHTML = "'" + myLibrary[i.title] + "'";
-    book.appendChild(bookTitle);
+    bookTitle.innerHTML = "'" + myLibrary[i].title + "'";
+    bookInfo.appendChild(bookTitle);
     const bookAuthor = document.createElement("div");
-    bookAuthor.innerHTML = newBook.author;
-    book.appendChild(bookAuthor);
+    bookAuthor.classList.add("book-author");
+    bookAuthor.innerHTML = myLibrary[i].author;
+    bookInfo.appendChild(bookAuthor);
     const bookPages = document.createElement("div");
-    bookPages.innerHTML = newBook.pages;
-    book.appendChild(bookPages);
+    bookPages.classList.add("book-pages");
+    bookPages.innerHTML = myLibrary[i].pages + " pages";
+    bookInfo.appendChild(bookPages);
     const bookReadStatus = document.createElement("div");
     bookReadStatus.innerHTML = newBook.readStatus;
-    book.appendChild(bookReadStatus);
+    bookInfo.appendChild(bookReadStatus);
+    const removeButton = document.createElement("button");
+    removeButton.setAttribute("id", "remove-book-button");
+    removeButton.textContent = "REMOVE";
+    bookButtons.appendChild(removeButton);
 
     libraryContainer.appendChild(book);
   }
 }
 
+// Clicking NEW BOOK button will load form to enter book details.
 newBookBtn.addEventListener("click", showBookDetails);
 
 function showBookDetails () {
@@ -53,6 +76,7 @@ function showBookDetails () {
   about.style.display = "none";
 }
 
+// Calls function to add book to library once SUBMIT button is pressed.
 submitBookBtn.addEventListener("click", addBookToLibrary);
 
 function addBookToLibrary () {
@@ -63,8 +87,10 @@ function addBookToLibrary () {
   const pages = document.querySelector("#page-count").value;
   const readStatus = document.querySelector("#read-status").checked;
 
+  // Uses Book constructor to create object properties from form input.
   let newBook = new Book(title, author, pages, readStatus);
 
+  // Adds book object into library array.
   myLibrary.push(newBook);
 
   bookInputDetails.style.display = "none";
@@ -73,6 +99,7 @@ function addBookToLibrary () {
   showLibrary(newBook);
 }
 
+// If clicked, cancels book form input, and remove form from screen.
 cancelBookSumit.addEventListener("click", hideBookDetails);
 
 function hideBookDetails () {
