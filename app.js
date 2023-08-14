@@ -26,13 +26,8 @@ function showLibrary (newBook) {
     book.classList.add("book");
     book.style.display = "flex";
 
-
-    
-    // Want to link book element to array index. How?
-    book.setAttribute("data-book-id", );
-
-
-
+    // Set data atrribute for book as bookId (the array's index).
+    book.setAttribute("data-book-id", i);
 
     let bookInfo = document.createElement("div");
     bookInfo.classList.add("book-info");
@@ -56,13 +51,23 @@ function showLibrary (newBook) {
     bookPages.classList.add("book-pages");
     bookPages.innerHTML = myLibrary[i].pages + " pages";
     bookInfo.appendChild(bookPages);
-    const bookReadStatus = document.createElement("div");
-    bookReadStatus.innerHTML = newBook.readStatus;
-    bookInfo.appendChild(bookReadStatus);
     const removeButton = document.createElement("button");
     removeButton.setAttribute("id", "remove-book-button");
     removeButton.textContent = "REMOVE";
     bookButtons.appendChild(removeButton);
+
+    // USE CODE DIRECTLY BELOW FOR ADDING READ BUTTON INTO BOOK ELEMENT.
+    // const bookReadStatus = document.createElement("div");
+    // bookReadStatus.innerHTML = newBook.readStatus;
+    // bookInfo.appendChild(bookReadStatus);
+    
+    // Add button to remove book element from index.
+    removeButton.addEventListener("click", removeBookFromLibrary);
+
+    function removeBookFromLibrary () {
+      myLibrary.splice(book.dataset.bookId, 1);
+      libraryContainer.removeChild(book);
+    }
 
     libraryContainer.appendChild(book);
   }
