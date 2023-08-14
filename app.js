@@ -102,6 +102,11 @@ function addBookToLibrary () {
   // Adds book object into library array.
   myLibrary.push(newBook);
 
+  document.querySelector("#title").value = "";
+  document.querySelector("#author").value = "";
+  document.querySelector("#page-count").value = "";
+  document.querySelector("#read-status").checked = false;
+
   // Removes book form and returns about section once SUBMIT button is clicked.
   bookInputDetails.style.display = "none";
   about.style.display = "flex";
@@ -113,6 +118,10 @@ function addBookToLibrary () {
 cancelBookSumit.addEventListener("click", hideBookDetails);
 
 function hideBookDetails () {
+  document.querySelector("#title").value = "";
+  document.querySelector("#author").value = "";
+  document.querySelector("#page-count").value = "";
+  document.querySelector("#read-status").checked = false;
   bookInputDetails.style.display = "none";
   about.style.display = "flex";
 }
