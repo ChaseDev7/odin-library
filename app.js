@@ -67,6 +67,7 @@ function showLibrary (newBook) {
     function removeBookFromLibrary () {
       myLibrary.splice(book.dataset.bookId, 1);
       libraryContainer.removeChild(book);
+      showLibrary();
     }
 
     libraryContainer.appendChild(book);
