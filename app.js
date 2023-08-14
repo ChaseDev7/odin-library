@@ -71,6 +71,10 @@ function showLibrary (newBook) {
       myLibrary.splice(book.dataset.bookId, 1);
       libraryContainer.removeChild(book);
       showLibrary();
+
+      if (myLibrary.length == 0) {
+        noBooksMessage.style.display = "flex";
+      }
     }
 
     libraryContainer.appendChild(book);
