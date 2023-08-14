@@ -11,6 +11,10 @@ body {
   width: 50%;
 }
 
+#page-count {
+  width: 35%;
+}
+
 #library {
   margin: 20px 20px 20px 0;
   width: 50%;

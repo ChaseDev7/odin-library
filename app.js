@@ -1,5 +1,7 @@
+// Creates empty library array.
 let myLibrary = [];
 
+// Creates book constructor to be able to add new books into array.
 function Book(title, author, pages, readStatus) {
   this.title = title
   this.author = author
@@ -29,6 +31,7 @@ function showLibrary (newBook) {
     // Set data atrribute for book as bookId (the array's index).
     book.setAttribute("data-book-id", i);
 
+    // Creates elements inside book container to separate the buttons from the book info.
     let bookInfo = document.createElement("div");
     bookInfo.classList.add("book-info");
     bookInfo.style.display = "flex";
@@ -99,13 +102,14 @@ function addBookToLibrary () {
   // Adds book object into library array.
   myLibrary.push(newBook);
 
+  // Removes book form and returns about section once SUBMIT button is clicked.
   bookInputDetails.style.display = "none";
   about.style.display = "flex";
 
   showLibrary(newBook);
 }
 
-// If clicked, cancels book form input, and remove form from screen.
+// If clicked, cancels book form input, and removes form from screen.
 cancelBookSumit.addEventListener("click", hideBookDetails);
 
 function hideBookDetails () {
