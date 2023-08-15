@@ -2,11 +2,24 @@
 let myLibrary = [];
 
 // Creates book constructor to be able to add new books into array.
-function Book(title, author, pages, readStatus) {
+function Book(title, author, pages) {
   this.title = title
   this.author = author
   this.pages = pages
-  this.readStatus = readStatus
+  this.readStatus = function(bookButtons) {
+    if (document.querySelector("#read-status").checked == false) {
+      const bookReadButton = document.createElement("button");
+      bookReadButton.setAttribute("id", "unread-book-button");
+      bookReadButton.textContent = "NOT READ YET";
+      bookButtons.appendChild(bookReadButton);
+      // Fix the button to show READ below.
+    } else if (document.querySelector("#read-status").checked == true) {
+      const bookReadButton = document.createElement("button");
+      bookReadButton.setAttribute("id", "read-book-button");
+      bookReadButton.textContent = "READ";
+      bookButtons.appendChild(bookReadButton);
+    }
+  }
 }
 
 const body = document.querySelector("body");
@@ -54,15 +67,13 @@ function showLibrary (newBook) {
     bookPages.classList.add("book-pages");
     bookPages.innerHTML = myLibrary[i].pages + " pages";
     bookInfo.appendChild(bookPages);
+
+    newBook.readStatus(bookButtons);
+
     const removeButton = document.createElement("button");
     removeButton.setAttribute("id", "remove-book-button");
     removeButton.textContent = "REMOVE";
     bookButtons.appendChild(removeButton);
-
-    // USE CODE DIRECTLY BELOW FOR ADDING READ BUTTON INTO BOOK ELEMENT.
-    // const bookReadStatus = document.createElement("div");
-    // bookReadStatus.innerHTML = newBook.readStatus;
-    // bookInfo.appendChild(bookReadStatus);
     
     // Add button to remove book element from index.
     removeButton.addEventListener("click", removeBookFromLibrary);
