@@ -2,25 +2,12 @@
 let myLibrary = [];
 
 // Creates book constructor to be able to add new books into array.
-function Book(title, author, pages) {
+function Book(title, author, pages, readStatus) {
   this.title = title
   this.author = author
   this.pages = pages
-  this.readStatus = function(bookButtons) {
-    if (document.querySelector("#read-status").checked == false) {
-      const bookReadButton = document.createElement("button");
-      bookReadButton.setAttribute("id", "unread-book-button");
-      bookReadButton.textContent = "NOT READ YET";
-      bookButtons.appendChild(bookReadButton);
-      // Fix the button to show READ below.
-    } else if (document.querySelector("#read-status").checked == true) {
-      const bookReadButton = document.createElement("button");
-      bookReadButton.setAttribute("id", "read-book-button");
-      bookReadButton.textContent = "READ";
-      bookButtons.appendChild(bookReadButton);
-    }
-  }
-}
+  this.readStatus = readStatus
+};
 
 const body = document.querySelector("body");
 const newBookBtn = document.querySelector("#new-book-button");
@@ -61,14 +48,44 @@ function showLibrary (newBook) {
     bookInfo.appendChild(bookTitle);
     const bookAuthor = document.createElement("div");
     bookAuthor.classList.add("book-author");
-    bookAuthor.innerHTML = myLibrary[i].author;
+    bookAuthor.innerHTML = "by: " + myLibrary[i].author;
     bookInfo.appendChild(bookAuthor);
     const bookPages = document.createElement("div");
     bookPages.classList.add("book-pages");
     bookPages.innerHTML = myLibrary[i].pages + " pages";
     bookInfo.appendChild(bookPages);
 
-    newBook.readStatus(bookButtons);
+    // Adds button to show read status (and when clicked, to change status).
+    const bookReadButton = document.createElement("button");
+    bookReadButton.setAttribute("id", "read-book-button");
+    let bookStatus = myLibrary[i].readStatus;
+
+    if (myLibrary[i].readStatus == true) {
+      bookReadButton.textContent = "READ";
+      bookReadButton.style.backgroundColor = "rgb(32, 107, 32)";
+      bookReadButton.style.color = "white";
+    } else if (myLibrary[i].readStatus == false) {
+      bookReadButton.textContent = "NOT READ";
+      bookReadButton.style.backgroundColor = "rgb(202, 203, 202)";
+      bookReadButton.style.color = "black";
+    };
+
+    bookButtons.appendChild(bookReadButton);
+
+    // Can't figure out how to change the readStatus of individual book.
+    // PLEASE EXPLAIN IF MY CODE IS INCORRECT, AND WHY.
+    // CODE I'M TRYING TO CHANGE BELOW:
+    
+    bookReadButton.addEventListener("click", () => {
+      if (bookStatus == true) {
+        bookStatus == false;
+      } else if (bookStatus == false) {
+        bookStatus == true;
+      }
+      console.log(bookStatus);
+    });
+
+    // CODE I'M TRYING TO CHANGE ABOVE.
 
     const removeButton = document.createElement("button");
     removeButton.setAttribute("id", "remove-book-button");
@@ -85,12 +102,12 @@ function showLibrary (newBook) {
 
       if (myLibrary.length == 0) {
         noBooksMessage.style.display = "flex";
-      }
-    }
+      };
+    };
 
     libraryContainer.appendChild(book);
-  }
-}
+  };
+};
 
 // Clicking NEW BOOK button will load form to enter book details.
 newBookBtn.addEventListener("click", showBookDetails);
@@ -98,7 +115,7 @@ newBookBtn.addEventListener("click", showBookDetails);
 function showBookDetails () {
   bookInputDetails.style.display = "flex";
   about.style.display = "none";
-}
+};
 
 // Calls function to add book to library once SUBMIT button is pressed.
 submitBookBtn.addEventListener("click", addBookToLibrary);
@@ -127,7 +144,7 @@ function addBookToLibrary () {
   about.style.display = "flex";
 
   showLibrary(newBook);
-}
+};
 
 // If clicked, cancels book form input, and removes form from screen.
 cancelBookSumit.addEventListener("click", hideBookDetails);
@@ -139,4 +156,4 @@ function hideBookDetails () {
   document.querySelector("#read-status").checked = false;
   bookInputDetails.style.display = "none";
   about.style.display = "flex";
-}
+};
