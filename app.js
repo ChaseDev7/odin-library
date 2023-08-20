@@ -58,34 +58,35 @@ function showLibrary (newBook) {
     // Adds button to show read status (and when clicked, to change status).
     const bookReadButton = document.createElement("button");
     bookReadButton.setAttribute("id", "read-book-button");
+    
     let bookStatus = myLibrary[i].readStatus;
 
-    if (myLibrary[i].readStatus == true) {
-      bookReadButton.textContent = "READ";
-      bookReadButton.style.backgroundColor = "rgb(32, 107, 32)";
-      bookReadButton.style.color = "white";
-    } else if (myLibrary[i].readStatus == false) {
-      bookReadButton.textContent = "NOT READ";
-      bookReadButton.style.backgroundColor = "rgb(202, 203, 202)";
-      bookReadButton.style.color = "black";
+    checkBookStatus();
+
+    function checkBookStatus () {
+      if (bookStatus == true) {
+        bookReadButton.textContent = "READ";
+        bookReadButton.style.backgroundColor = "rgb(32, 107, 32)";
+        bookReadButton.style.color = "white";
+      } else if (bookStatus == false) {
+        bookReadButton.textContent = "NOT READ";
+        bookReadButton.style.backgroundColor = "rgb(202, 203, 202)";
+        bookReadButton.style.color = "black";
+      };
+    };
+
+    bookReadButton.addEventListener("click", toggleBookStatus);
+
+    function toggleBookStatus () {
+      if (bookStatus == true) {
+        bookStatus = false;
+      } else if (bookStatus == false) {
+        bookStatus = true;
+      };
+      checkBookStatus();
     };
 
     bookButtons.appendChild(bookReadButton);
-
-    // Can't figure out how to change the readStatus of individual book.
-    // PLEASE EXPLAIN IF MY CODE IS INCORRECT, AND WHY.
-    // CODE I'M TRYING TO CHANGE BELOW:
-    
-    bookReadButton.addEventListener("click", () => {
-      if (bookStatus == true) {
-        bookStatus == false;
-      } else if (bookStatus == false) {
-        bookStatus == true;
-      }
-      console.log(bookStatus);
-    });
-
-    // CODE I'M TRYING TO CHANGE ABOVE.
 
     const removeButton = document.createElement("button");
     removeButton.setAttribute("id", "remove-book-button");
